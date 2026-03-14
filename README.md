@@ -2,8 +2,10 @@ LilyPond to ABC converter using [python-ly](https://pypi.python.org/pypi/python-
 
 Usage: 
 
-* `pipenv install`
-* `pipenv run python ly2abc.py myfile.ly`
+* `uv venv`
+# activate .venv if needed `.venv\Scripts\activate`
+`uv pip install python-ly`
+`uv run python ly2abc.py test.ly`
 
 This is heavily a work in progress. It does not yet handle conversion from
 LilyPond for the following features of the ABC specification:
