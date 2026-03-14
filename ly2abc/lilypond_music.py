@@ -62,11 +62,21 @@ class LilypondMusic:
 
   def interpolate_chords(self):
     buffers = self.outputter.outputter.buffers
+    
+    # Guard: if no buffers at all, or somehow empty → skip safely
+    if not buffers:
+        return
+    
+    # Optional: more strict check if the method only makes sense with chords present
+    # But since we don't have a separate chord list, just proceed if buffers exist
+    
     chord_time = 0
     note_time = 0
     buffer_index = 0
-    while buffers[buffer_index].duration == 0:
-      buffer_index += 1
+    
+    while buffer_index < len(buffers) and buffers[buffer_index].duration == 0:
+        buffer_index += 1
+
 
     for (chord,duration) in self.chords:
       if chord: buffers[buffer_index].output_chord(chord)
